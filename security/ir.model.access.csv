@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kg_intercompany_transfer,kg_intercompany_transfer,model_intercompany_transfer,,1,1,1,0
+access_kg_intercompany_transfer_line,kg_intercompany_transfer_line,model_intercompany_transfer_line,,1,1,1,1

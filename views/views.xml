@@ -1,0 +1,92 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="kg_intercompany_transfer.list">
+      <field name="name">Inter Company Transfer</field>
+      <field name="model">intercompany.transfer</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="s_company_id"/>
+          <field name="d_company_id"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- explicit form view definition -->
+    
+    <record model="ir.ui.view" id="kg_intercompany_transfer.form">
+      <field name="name">Inter Company Transfer</field>
+      <field name="model">intercompany.transfer</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="confirm" string="Confirm" type="object" class="oe_highlight" groups="stock.group_stock_user" states="draft"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <sheet>
+            <h1>
+              <field name="name"/>
+            </h1>
+            <group>
+              <group>
+                <field name="date" readonly="1"/>
+                <field name="s_company_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+              </group>
+              <group>
+                <field name="d_company_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Products To Transfer">
+                <field name="transfer_products_ids" attrs="{'readonly': [('state','!=', 'draft')]}">
+                  <tree editable="top">
+                    <field name="product_id" domain="[('company_id', '=', parent.s_company_id)]"/>
+                    <field name="uom_id"/>
+                    <field name="d_product_id" domain="[('company_id', '=', parent.d_company_id)]"/>
+                    <field name="d_uom_id"/>
+                    <field name="qty"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Extra Info">
+                  <group>
+                    <field name="s_picking_type_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                    <field name="d_picking_type_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                    <field name="s_picking_id" readonly="1"/>
+                    <field name="d_picking_id" readonly="1"/>
+                  </group>
+              </page>
+            </notebook>
+          </sheet>
+
+          <div class="o_attachment_preview" />
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <field name="activity_ids" widget="mail_activity"/>
+              <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+    
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="kg_intercompany_transfer">
+      <field name="name">Inter Company transfer</field>
+      <field name="res_model">intercompany.transfer</field>
+      <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kg_intercompany_transfer.list"/>
+    </record>
+
+    <!-- menu list -->    
+
+    <menuitem name="Inter Company Transfer" id="kg_intercompany_transfer_menu" parent="stock.menu_stock_root"  action="kg_intercompany_transfer"/>
+
+
+  </data>
+</odoo>
