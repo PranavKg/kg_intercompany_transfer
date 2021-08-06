@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Intercompany Inventory Transfer",
-
+    'name': "Inter company Inventory Transfer",
+    'version': '12.0.1.0.0',
     'summary': """
-    Inter Company Stock Transfer
+    Transfer stock between companies.
         """,
 
     'description': """
-
-    Create new inventory transfer method where 1 or more product is required to be transferred from Company X to Company Y. 
+    
+    This module helps to transfer 1 or more product from Company X to Company Y in a multi company concept.
+    Module can be used, if company X and company Y is having separate product list 
+    (Note : Odoo default feature can be used if you are trying to transfer stock for a product 
+    having product Id shared by both company)
+    
     This will be within the inventory module only (NO SO or PO process involved during the transfer)
 
     """,
@@ -20,7 +24,7 @@
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Warehouse',
-    'version': '0.1',
+    'maintainer': 'Pranav P S',
 
     # any module necessary for this one to work correctly
     'depends': ['base','stock'],
