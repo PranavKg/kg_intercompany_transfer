@@ -36,4 +36,8 @@
         'views/inherited_views.xml',
         'data/data.xml',
     ],
+    'images': ['static/description/banner.png'],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }
