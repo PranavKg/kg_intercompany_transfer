@@ -17,7 +17,7 @@
 
     """,
 
-    'author': "Pranav",
+    'author': "Klystron Global",
     'website': "http://www.klystronglobal.com",
 
     # Categories can be used to filter modules in modules listing
